@@ -1,9 +1,11 @@
-/* On demande à l’utilisateur de faire un CHOIX entre la liste de mots ou celle de phrases. Cette fonction ne prend pas de paramètres
-car c'est le user qui va rentrer lui meme  */
-function choisirPhraseOuMots() {
-  /* Tant que le user n'a pas choisi "mots" ou "phrases", on lui redemande */
+/* L'ensemble des fonctions sont décrites et développées dans ce fichiers */
 
+/* étape 1 - On demande à l’utilisateur de faire un CHOIX entre la liste de mots ou celle de phrases.
+Cette fonction ne prend pas de paramètres car c'est le user qui va rentrer lui meme  */
+function choisirPhraseOuMots() {
   let choix = prompt("Voulez-vous jouer avec la liste de mots ou la liste de phrases ? (écrivez 'mots' ou 'phrases')")
+
+  /* Tant que le user n'a pas choisi "mots" ou "phrases", on lui redemande (while == 'tant que ...') */
   while (choix !== "mots" && choix !== "phrases") {
     choix = prompt("Vous devez choisir entre 'mots' et 'phrases'")
   }
@@ -22,7 +24,7 @@ function lancerBoucleDeJeu(listePropositions) {
 }
 
 function afficherResultat(score, nombreMotsTotal) {
-  /* afficherResultat : cette fonction prend en paramètre le résultat et le nombre total de mots proposés, et affiche le résultat du joueur ;  */
+  /* afficherResultat : cette fonction prend en paramètre le résultat et le nombre total de mots proposés, et affiche le résultat du joueur ; */
   console.log("Votre résultat est de " + score + " sur " + nombreMotsTotal)
 }
 

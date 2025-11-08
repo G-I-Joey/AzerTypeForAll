@@ -50,7 +50,10 @@ function lancerJeu() {
     if (listeMots[i] === undefined) {
       afficherProposition("Le jeu est fini !")
       boutonValider.disabled = true
+    } else {
+      afficherProposition(listeMots[i])
     }
+
     /* à chaque fois que l’utilisateur clique sur Valider, videz le champ inputEcriture.  */
     inputEcriture.value = ""
 

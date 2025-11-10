@@ -47,8 +47,9 @@ Pour désactiver ce bouton, mettez la propriété disabled de ce bouton à true 
     if (listeMots[i] === undefined) {
       afficherProposition("Le jeu est fini !")
       boutonValider.disabled = true
-    } else {
+    } else if (listeMots[i]) {
       afficherProposition(listeMots[i])
+      score++
     }
 
 /* à chaque fois que l’utilisateur clique sur Valider, videz le champ inputEcriture.  */

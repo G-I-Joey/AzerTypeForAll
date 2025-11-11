@@ -26,11 +26,12 @@ function afficherProposition(proposition) {
 
 /* Cette fonction lance le jeu. */
 function lancerJeu() {
-  // Initialisations
+// Initialisations
   let score = 0
-  /* On souhaite que le jeu affiche au préalable le nombre de mots qui seront présentés à l'utilisateur en fonction du nombre
+/* On souhaite que le jeu affiche au préalable le nombre de mots qui seront présentés à l'utilisateur en fonction du nombre
   de mots que contient l'array listeMots */
   let nbMotsProposes = listeMots.length
+  let nbPhrasesProposes = listePhrases.length
 /* créez une variable i qui servira de compteur */
   let i = 0
 
@@ -63,4 +64,20 @@ Pour désactiver ce bouton, mettez la propriété disabled de ce bouton à true 
     afficherResultat(score, nbMotsProposes)
 
   })
+/* L’objectif de cet exercice est de gérer ces boutons radio pour les rendre fonctionnels. Ainsi, à l’issue de l’exercice, lorsque l’utilisateur cliquera sur “Phrases”, il devra recopier une phrase. Inversement, lorsqu’il cliquera sur “Mots”, il devra recopier un mot. */
+
+/* Écoutez l’événement “change” sur les boutons radio. */
+  let optionSource = document.querySelectorAll("input[name='optionSource']")
+
+  optionSource.addEventListener("change", () => {
+    let source = ""
+    for (let i = 0; i < optionSource.length; i++) {
+      if (optionSource[i].checked) {
+        source = optionSource[i].value
+        break
+      }
+    }
+    console.log(source)
+  })
+
 }

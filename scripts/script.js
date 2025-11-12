@@ -6,6 +6,7 @@
 
 let score = 0
 let nbMotsProposes = 0
+let listePropositions = listeMots
 
 /* créez une fonction afficherResultat, qui va prendre en paramètre le score et le nombre de mots proposés,
 et afficher le score dans la zone dédiée */
@@ -29,37 +30,35 @@ function afficherProposition(proposition) {
 function lancerJeu() {
 // Initialisations
   let score = 0
-/* On souhaite que le jeu affiche au préalable le nombre de mots qui seront présentés à l'utilisateur en fonction du nombre
-  de mots que contient l'array listeMots */
-  let nbMotsProposes = listeMots.length
+  let nbMotsProposes = listePropositions.length
   let nbPhrasesProposes = listePhrases.length
 /* créez une variable i qui servira de compteur */
   let i = 0
 
   let boutonValider = document.getElementById("btnValiderMot")
   let inputEcriture = document.getElementById("inputEcriture")
-  afficherProposition(listeMots[i])
+  afficherProposition(listePropositions[i])
   afficherResultat(score, nbMotsProposes)
 
   boutonValider.addEventListener("click", () => {
 /* faire apparaître dans la console le mot tapé dans la case dédiée 'inputEcriture' */
     console.log(inputEcriture.value)
-    if (inputEcriture.value === listeMots[i]) {
+    if (inputEcriture.value === listePropositions[i]) {
       score++
     }
 /* ajoutez 1 à i à chaque fois que l’utilisateur clique sur le bouton Envoyer */
     i++
 /* à chaque fois que l’utilisateur clique sur Valider, videz le champ inputEcriture.  */
     inputEcriture.value = ""
-    afficherProposition(listeMots[i])
+    afficherProposition(listePropositions[i])
 
 /* Si le mot numéro i du tableau vaut undefined, écrivez le message “Le jeu est fini” à la place du mot, et désactivez le bouton de validation.
 Pour désactiver ce bouton, mettez la propriété disabled de ce bouton à true ; */
-    if (listeMots[i] === undefined) {
+    if (listePropositions[i] === undefined) {
       afficherProposition("Le jeu est fini !")
       boutonValider.disabled = true
     } else {
-      afficherProposition(listeMots[i])
+      afficherProposition(listePropositions[i])
     }
 
     afficherResultat(score, nbMotsProposes)
@@ -69,16 +68,17 @@ Pour désactiver ce bouton, mettez la propriété disabled de ce bouton à true 
 
 /* Écoutez l’événement “change” sur les boutons radio. */
 
-  let optionSource = document.querySelectorAll("input[name='optionSource']")
-  let source = ""
-  let choixUser = document
+  let listeBtnRadio = document.querySelectorAll(".optionSource input")
 
-  for (let i = 0; i < optionSource.length; i++) {
-    if (optionSource[i].checked) {
-      source = optionSource[i].value
-    }
+  for (let index = 0; index < listeBtnRadio.length; index++) {
+    listeBtnRadio[index].addEventListener("change", (event) => {
+      console.log(event.target.value)
+      if (event.target.value === "1") {
+        listePropositions = listeMots
+      } else if (event.target.value === "2") {
+        listePropositions = listePhrases
+      }
+      afficherProposition(listePropositions[i])
+    })
   }
-  console.log(source)
-
-
 }
